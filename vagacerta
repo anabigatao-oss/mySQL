@@ -1,0 +1,41 @@
+create database if not exists Vagacerta_ana
+default character set utf8mb4 
+collate utf8mb4_0900_ai_ci;
+use clinica_ana;
+
+create table if not exists usuario (
+id int primary key auto_increment,
+nome varchar(30) not null,
+cpf int ,
+telefone int,
+email varchar (35),
+status int, 
+tipo_usuario enum ('adm', 'usuario')
+) character set utf8mb4; 
+
+create table if not exists matricula (
+id int primary key auto_increment,
+data_inicio date,
+status_ boolean,
+id_usuario int,
+id_curso int,
+foreign key (id_usuario) references usuario(id),
+foreign key (id_curso) references curso(id)
+) character set utf8mb4;
+
+create table if not exists curso (
+id int primary key auto_increment,
+nome varchar(50),
+carga_horaria datetime,
+area_do_curso varchar(40)
+) character set utf8mb4;
+
+create table if not exists modulo (
+    id int primary key auto_increment,
+    nome varchar(20)
+) character set utf8mb4;
+
+create table if not exists video (
+    id int primary key auto_increment,
+    nome varchar(20)
+) character set utf8mb4;
